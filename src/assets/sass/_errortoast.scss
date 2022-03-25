@@ -1,0 +1,42 @@
+.toast_container {
+  height:7em;
+  width: 15rem;
+  position:absolute;
+  opacity: 0.8;
+  top:1rem;
+  right:1rem
+}
+.success{
+  background-color: rgba(0,136,169,1);
+}
+.error {
+  background-color:red;
+}
+.toast-content{
+  height: 100%;
+  width: 100%;
+}
+
+.toast-body{
+  display: flex;
+  height: 100%;
+}
+
+.toast-body .toast-content{
+  margin-top:30px;
+  margin-left:20px;
+  justify-content: space-between;
+  display: row;
+}
+
+.toast-icon-body{
+  width: 30%;
+  height: 100%;
+}
+
+.toast-icon-body img{
+  margin-top: 2rem;
+  height: 3rem;
+  width: 3rem;
+  margin-left:1rem;
+}

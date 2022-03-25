@@ -1,0 +1,18 @@
+.text-field{
+  font-weight: bold;
+  margin-top: 20px;
+  &_content{
+    display: flex;
+  justify-content: space-between;
+  }
+  
+
+  &_label{
+    font-family: 'Times New Roman', Times, serif;
+  }
+  &_input{
+    background-color: darkgrey;
+    box-shadow: 0 8px 8px -4px lightblue;
+    height: 30px;
+  }
+}

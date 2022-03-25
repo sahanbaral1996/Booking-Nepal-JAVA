@@ -1,0 +1,23 @@
+body {
+  background-color: grey;
+  font-family: sans-serif;
+}
+
+.base_wrapper {
+  margin: 100px auto;
+  max-width: 540px;
+  padding: 20px 0 16px 50px;
+  display: block;
+}
+
+.submit-button{
+  margin-top: 30px;
+  margin-left:50%
+}
+
+.error-message {
+  font-weight: lighter;
+  color:darkred;
+  margin-left: 50%;
+}
+
