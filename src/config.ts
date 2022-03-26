@@ -6,6 +6,9 @@ const config = {
     userPoolWebClientId: process.env.REACT_APP_AWS_COGNITO_WEB_CLIENT_ID,
     userPoolWebClientSecret: process.env.REACT_APP_AWS_COGNITO_WEB_CLIENT_SECRET,
   },
+  api: {
+    url: process.env.REACT_APP_BASE_API,
+  }
   
 }
 
