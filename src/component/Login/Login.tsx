@@ -8,6 +8,7 @@ import { Auth } from "aws-amplify";
 import useMountedRef from "../../hooks/useMountedRef";
 import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
 import ErrorToast from "../commons/error/ErrorToast";
+import { SIGNUP } from "../../constants/route";
 
 const LoginInitialValues = {
   username: '',
@@ -43,7 +44,7 @@ const Login = () => {
   return (
     <div className="base_wrapper">
       <div className="login-header">
-        <p>Don't have an account ? <a href="/signup">Signup</a> now.</p>
+        <p>Don't have an account ? <a href={ SIGNUP }>Signup</a> now.</p>
       </div>
       <form onSubmit={formik.handleSubmit}>
         <div className="login_wrapper">

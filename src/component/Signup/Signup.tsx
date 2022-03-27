@@ -8,6 +8,7 @@ import useMountedRef from "../../hooks/useMountedRef";
 import ErrorToast from "../commons/error/ErrorToast";
 import { createUser } from "../../service/user";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { LOGIN } from "../../constants/route";
 
 const SignupInitialValues = {
   username: '',
@@ -47,7 +48,7 @@ const Signup = () => {
   return (
     <div className="base_wrapper">
       <div className="login-header">
-        <p>Already have an account  ? <a href="/login">Login</a> now.</p>
+        <p>Already have an account  ? <a href={ LOGIN}>Login</a> now.</p>
       </div>
       <form onSubmit={formik.handleSubmit}>
         <div className="login_wrapper">
