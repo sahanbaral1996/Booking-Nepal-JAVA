@@ -1,4 +1,5 @@
-import React from "react";
+import React, { SetStateAction } from "react";
+import { useNavigate } from 'react-router';
 import { useFormik } from "formik";
 import TextField from "../commons/TextField/TextField";
 import Lang from "../../constants/lang/lang";
@@ -7,17 +8,27 @@ import Button from "@material-ui/core/Button/Button";
 import { Auth } from "aws-amplify";
 import useMountedRef from "../../hooks/useMountedRef";
 import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
-import ErrorToast from "../commons/error/ErrorToast";
-import { SIGNUP } from "../../constants/route";
+import { HOME_URL, SETUP_PASSWORD, SIGNUP } from "../../constants/route";
+import { setupCurrentUserSession } from "../../utils/auth";
 
 const LoginInitialValues = {
   username: '',
   password:''
 }
 
-const Login = () => {
+
+
+const Login: React.FC<{ setCognitoUser: React.Dispatch<SetStateAction<any>> }> = ({ setCognitoUser }) => {
+  const history = useNavigate();
   const [submitting, setSubmitting] = React.useState<boolean|undefined>(false);
   const mountedRef = useMountedRef();
+
+  React.useEffect(() => {
+    (async () => {
+      await Auth.signOut();
+    })();
+    
+  },[]);
 
   const formik = useFormik({
     initialValues:LoginInitialValues,
@@ -26,12 +37,16 @@ const Login = () => {
       setSubmitting(true);
       try {
         const user = await Auth.signIn(values.username, values.password);
+        if (user.challengeName == "NEW_PASSWORD_REQUIRED") {
+          setCognitoUser(user);
+        } else {
+          console.log(user);
+          setupCurrentUserSession(user);
+          history(HOME_URL);
+        }
       } catch (e: any) {
-        ErrorToast(
-          "Authentication Failed",
-           "Wrong Username or password",
-          "warn"
-        );
+        console.log(e);
+        alert(e);
       } finally {
         if (mountedRef.current) {
           setSubmitting(false);

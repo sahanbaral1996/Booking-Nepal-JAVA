@@ -6,7 +6,7 @@ import { IPrivateRouterProps } from "../../../types/Router";
 
 const PrivateRouter: React.FC<IPrivateRouterProps> = ({ Component, ...props }) => {
   return (
-    checkAuthentication()==='asd' ? <Component />:<Navigate to="/login" />
+    checkAuthentication() ? <Component />:<Navigate to="/login" />
   )
   
 }

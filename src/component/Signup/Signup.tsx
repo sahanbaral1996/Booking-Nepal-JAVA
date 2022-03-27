@@ -9,6 +9,7 @@ import ErrorToast from "../commons/error/ErrorToast";
 import { createUser } from "../../service/user";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { LOGIN } from "../../constants/route";
+import { useNavigate } from "react-router";
 
 const SignupInitialValues = {
   username: '',
@@ -20,6 +21,8 @@ const SignupInitialValues = {
 }
 
 const Signup = () => {
+
+  const history = useNavigate();
   const [submitting, setSubmitting] = React.useState<boolean|undefined>(false);
   const mountedRef = useMountedRef();
 
@@ -33,6 +36,8 @@ const Signup = () => {
         (async () => {
           const userSignup = await createUser(values);
           ErrorToast("Signup succesful", "", "success");
+
+          history(LOGIN);
         })();
       } catch (e) {
         ErrorToast("Error", " Creation of User Failed", "warn");

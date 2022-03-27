@@ -1,16 +1,20 @@
 import Amplify from "@aws-amplify/core";
 import { Authenticator } from 'aws-amplify-react';
-import Login from "../Login/Login";
+import Login from "./Login";
+import React from "react";
 
 import awsconfig from "./aws-exports";
+import Setuppassword from "./SetupPassword";
+import { ICognitoUserDetails } from "../../types/Iuser";
 
 Amplify.configure(awsconfig);
 
-console.log(Amplify);
-
 const CognitoAuth = () => {
+  const [cognitoUser, setCognitoUser] = React.useState(null);
   return (<Authenticator hideDefault={true}>
-    <Login />
+    {cognitoUser!= null && cognitoUser['challengeName'] == 'NEW_PASSWORD_REQUIRED' ?
+      <Setuppassword cognitoUser={cognitoUser} /> :
+      <Login setCognitoUser={setCognitoUser} />}
   </Authenticator>);
 }
 
